@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Indie+Flower&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="style.css">
+
+  <title>Photo filter</title>
+  
+</head>
+<body>
+  <h2>Photo filter  <span class='hl'>JS<span class="comment">(for 1920×1080)</span></span></h2>
+<div class="gradient-border">
+  <div class="controls" id="box">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="opacity">Opacity:</label>
+    <input id="opacity" type="range" name="opacity" min="0" max="100" value="10" data-sizing="%">
+
+  
+
+    <label for="sepia">sepia:</label>
+    <input id="sepia" type="range" name="sepia" min="0" max="100" value="10" data-sizing="%">
+
+    <label for="invert">invert:</label>
+    <input id="invert" type="range" name="invert" min="0" max="100" value="10" data-sizing="%">
+    
+   
+   <div class="up">
+     <span class="upload">Upload your picture</span>
+  <input type='file' id='getval' name="background-image" placeholder="Choose File"  /><br/><br/></div>
+<div id='clock' class="vd"></div>
+  </div>
+</div>
+  
+
+ 
+
+
+<script>
+  document.getElementById('getval').addEventListener('change', readURL, true);
+function readURL(){
+   var file = document.getElementById("getval").files[0];
+   var reader = new FileReader();
+   reader.onloadend = function(){
+      document.getElementById('clock').style.backgroundImage = "url(" + reader.result + ")";        
+   }
+   if(file){
+      reader.readAsDataURL(file);
+    }else{
+    }
+}
+</script>
+
+  <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+  </script>
+</body>
+</html>
