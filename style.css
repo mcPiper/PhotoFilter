@@ -76,6 +76,7 @@ margin-left: 5px;
 background-image:url('');
 background-size:cover;
 background-position: center;
+  margin-top: 32%;
 height: 250px; width: 250px;
 border: 1px solid #bbb;
 }
